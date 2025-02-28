@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import { TokenContext } from "../context/TokenContext"
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
+export const currency = "VNĐ"
 
 const LayoutDefault = () => {
   const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '');
