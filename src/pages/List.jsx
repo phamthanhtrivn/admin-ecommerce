@@ -25,18 +25,21 @@ const List = () => {
   }
 
   const removeProduct = async (id) => {
-    try {
-      const reponse = await axios.post(backendUrl + 'api/product/remove', {id}, {headers: {token}})
-      if (reponse.data.message) {
-        toast.success(reponse.data.message)
-        await fetchList()
+    const answer = confirm("Bạn có muốn xóa sản phẩm này không?") 
+    if (answer) {
+      try {
+        const reponse = await axios.post(backendUrl + 'api/product/remove', {id}, {headers: {token}})
+        if (reponse.data.message) {
+          toast.success(reponse.data.message)
+          await fetchList()
+        }
+        else {
+          toast.error(reponse.data.message)
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message)
       }
-      else {
-        toast.error(reponse.data.message)
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message)
     }
   }
 
